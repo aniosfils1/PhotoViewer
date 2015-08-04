@@ -11,11 +11,19 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Holo" >
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateVisible" >
+            <intent-filter>
+                <data android:scheme="http" android:host="codepath.com"/>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeTimeline.TimelineActivity"
+            android:label="@string/title_activity_timeline" >
         </activity>
     </application>
 
