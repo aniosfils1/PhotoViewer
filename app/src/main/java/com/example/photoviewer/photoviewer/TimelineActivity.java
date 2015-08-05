@@ -1,4 +1,4 @@
-package com.example.photoviewer.photoviewer.HomeTimeline;
+package com.example.photoviewer.photoviewer;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.example.photoviewer.photoviewer.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 

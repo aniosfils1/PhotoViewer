@@ -1,4 +1,4 @@
-package com.example.photoviewer.photoviewer.HomeTimeline;
+package com.example.photoviewer.photoviewer;
 
 /**
  * Created by alexandre on 8/3/15.
