@@ -26,6 +26,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ import java.util.List;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends Activity {
+    String TokenValue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,15 @@ public class LoginActivity extends Activity {
     }
 
     public void goToSu (View view) {
-        goToUrl ( "https://api.instagram.com/oauth/authorize/?client_id=3a738930c86844a8b505115a3c2427c0&redirect_uri=http://codepath.com&response_type=token");
+        String url = "https://api.instagram.com/oauth/authorize/?client_id=3a738930c86844a8b505115a3c2427c0&redirect_uri=http://codepath.com&response_type=token";
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
+        Uri UriData = getIntent().getData();
+        //TokenValue = UriData.getQueryParameter("access_token");
+        Intent i = new Intent(this, TimelineActivity.class);
+        i.putExtra("uriData", UriData);
+        startActivity(i);
     }
 
     //access token: 402526745.3a73893.9c0054ab116f443d9ea0e3820e5f8e2f

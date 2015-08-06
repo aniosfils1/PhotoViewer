@@ -1,11 +1,14 @@
 package com.example.photoviewer.photoviewer;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.wallet.wobs.UriData;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -21,15 +24,22 @@ public class TimelineActivity extends Activity {
     public static final String ACCESS_TOKEN = "402526745.3a73893.9c0054ab116f443d9ea0e3820e5f8e2f";
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
+    private String TokenValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+        // Get the access token
         //Send out API request to Popular Photos
         photos = new ArrayList<>();
         // Create adapter linking it to the source
         aPhotos = new InstagramPhotosAdapter(this, photos);
+        Uri UriData = getIntent().getData();
+        TokenValue = UriData.getQueryParameter("access_token");
+        Toast.makeText(this, (CharSequence) UriData, Toast.LENGTH_LONG).show();
+        //TokenValue = UriData.getQueryParameter("uriData");
+        //Toast.makeText(this, TokenValue, Toast.LENGTH_LONG).show();
         // find the ListView from the layout
         ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
         //set the adapter binding it to ListView
