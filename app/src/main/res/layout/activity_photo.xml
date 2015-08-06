@@ -1,10 +1,61 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.photoviewer.photoviewer.TimelineActivity">
+    tools:context="com.example.photoviewer.photoviewer.HomeTimeline.TimelineActivity">
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lvPhotos" />
+        android:id="@+id/IvPhotos"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/relativeLayout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout"
+        android:background="#FFCC99">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UserImage"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/UserName"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/UserImage"
+            android:layout_toEndOf="@+id/UserImage"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textColor="#993300"
+            android:textIsSelectable="false"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/UserPseudo"
+            android:layout_below="@+id/UserName"
+            android:layout_toRightOf="@+id/UserImage"
+            android:textColor="#993300"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+    </RelativeLayout>
 </RelativeLayout>
