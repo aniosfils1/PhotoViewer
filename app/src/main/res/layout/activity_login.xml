@@ -7,6 +7,11 @@
     android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
     android:background="@mipmap/back">
 
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <Button android:layout_height="wrap_content" android:layout_width="match_parent" android:text="IGLogin" android:autoLink="web" android:clickable="true" android:id="@+id/button_su" android:onClick="goToSu"
         android:background="#39000000"
         android:layout_marginTop="60dp"></Button>

@@ -6,7 +6,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IvPhotos"
+        android:id="@+id/lvPhotos"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -31,31 +31,31 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_alignParentBottom="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/UserName"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/UserImage"
-            android:layout_toEndOf="@+id/UserImage"
-            android:layout_marginLeft="10dp"
+            android:text="Username"
+            android:id="@+id/tvSelfUsername"
             android:textSize="18sp"
             android:textColor="#993300"
             android:textIsSelectable="false"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/UserImage"
+            android:layout_toRightOf="@+id/UserImage"
+            android:layout_toEndOf="@+id/UserImage" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/UserPseudo"
-            android:layout_below="@+id/UserName"
-            android:layout_toRightOf="@+id/UserImage"
+            android:text="Full Name"
+            android:id="@+id/tvSelfFullName"
             android:textColor="#993300"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:layout_below="@+id/tvSelfUsername"
+            android:layout_alignRight="@+id/tvSelfUsername"
+            android:layout_alignEnd="@+id/tvSelfUsername" />
     </RelativeLayout>
 </RelativeLayout>
