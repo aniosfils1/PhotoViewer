@@ -24,9 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TimelineActivity"
+            android:name=".fragments.AndroidTabActivity"
             android:label="@string/title_activity_timeline" >
         </activity>
+        <activity android:name="TimelineActivity"></activity>
+
+        <activity android:name=".fragments.Tab2"></activity>
+
+        <activity android:name=".fragments.Tab3"></activity>
     </application>
 
 </manifest>
