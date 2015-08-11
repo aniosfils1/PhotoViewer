@@ -98,12 +98,10 @@ public class TimelineActivity extends Activity {
         /*
         CLient ID: 3a738930c86844a8b505115a3c2427c0
         -Popular Media: https://api.instagram.com/v1/media/popular?access_token=ACCESS-TOKEN
-        */
-
-        // https://api.instagram.com/v1/users/self/feed?access_token=ACCESS-TOKEN
-
+        -Self Feed : https://api.instagram.com/v1/users/self/feed?access_token=ACCESS-TOKEN
+        -Recent Comment :
+*/
         String url = "https://api.instagram.com/v1/users/self/feed?access_token=" + ACCESS_TOKEN;
-
         //Create the client
         AsyncHttpClient client = new AsyncHttpClient();
         //  Trigger the GET request :D
@@ -116,11 +114,13 @@ public class TimelineActivity extends Activity {
                 //-Type: { "data" => [set] => "type" } ("image or video")
                 // Iterate each of the photo items and decode the item into a java object
                 JSONArray photosJSON = null;
+                JSONArray commentJSON = null;
                 try {
                     photosJSON = response.getJSONArray("data"); //array of posts
+                    commentJSON = response.getJSONObject("comments").getJSONArray("data");
                     //iterate array of posts
                     for (int i = 0; i < photosJSON.length(); i++) {
-                        //get the JSON object at tahat positiion
+                        //get the JSON object at that positiion
                         JSONObject photoJSON = photosJSON.getJSONObject(i);
                         //decode the attributes of the JSON into a data model
                         InstagramPhoto photo = new InstagramPhoto();
@@ -134,6 +134,10 @@ public class TimelineActivity extends Activity {
                         photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
                         // Likes Count
                         photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
+                        // Comment Count
+                        photo.commentsCount = photoJSON.getJSONObject("comments").getInt("count");
+                        // Profile Picture
+                        photo.profilePicture = photoJSON.getJSONObject("user").getString("profile_picture");
                         //Add decoded objects to the photos Array
                         photos.add(photo);
                     }

@@ -12,6 +12,8 @@ import com.example.photoviewer.photoviewer.InstagramPhoto;
 import com.example.photoviewer.photoviewer.R;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 
@@ -34,15 +36,26 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
         TextView tvLikesCount = (TextView) convertView.findViewById(R.id.tvLikesCount);
         TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
+        TextView tvCommentsCount = (TextView) convertView.findViewById(R.id.tvCommentCount);
+        ImageView ivProfile = (ImageView) convertView.findViewById(R.id.ivProfile);
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
         // insert the model data
         tvCaption.setText(photo.caption);
         tvUsername.setText(photo.username);
-        tvLikesCount.setText(String.valueOf(photo.likesCount));
+        if (photo.commentsCount > 1) {
+            tvCommentsCount.setText(String.valueOf(photo.commentsCount) + " comments");
+        } else if (photo.commentsCount == 1) {
+            tvCommentsCount.setText(String.valueOf(photo.commentsCount) + " comment");
+        } else {
+            tvCommentsCount.setText("No Comments");
+        }
+        tvLikesCount.setText(String.valueOf(photo.likesCount) + " likes");
         // Clear out the ImageView
         ivPhoto.setImageResource(0);
         // Insert the Image using Picasso
         Picasso.with(getContext()).load(photo.imageURL).into(ivPhoto);
+        // Insert Profile Picture with Picasso
+        Picasso.with(getContext()).load(photo.profilePicture).into(ivProfile);
         //return the created item
         return convertView;
     }
