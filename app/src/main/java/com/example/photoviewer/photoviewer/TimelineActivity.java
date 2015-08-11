@@ -1,21 +1,16 @@
 package com.example.photoviewer.photoviewer;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.net.URI;
-import java.net.URISyntaxException;
 
-import com.google.android.gms.wallet.wobs.UriData;
+import com.example.photoviewer.photoviewer.models.InstagramPhoto;
+import com.example.photoviewer.photoviewer.models.InstagramUser;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.picasso.Picasso;
 
@@ -49,9 +44,8 @@ public class TimelineActivity extends Activity {
         lvPhotos.setAdapter(aPhotos);
         // fetch the popular photos
         fetchHomeTimeline();
-        //fetchUserInfo();
+        fetchUserInfo();
     }
-
     public void fetchUserInfo() {
         String urlprof = "https://api.instagram.com/v1/users/self/?access_token=" + ACCESS_TOKEN;
         AsyncHttpClient client = new AsyncHttpClient();
@@ -59,22 +53,23 @@ public class TimelineActivity extends Activity {
             //onSuccess (worked)
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // Expecting a JSON object
-                //-Type: { "data" => [set] => "type" } ("image or video")
-                // Iterate each of the photo items and decode the item into a java object
                 JSONObject userJSON = null;
                 try {
                     userJSON = response.getJSONObject("data");
-                    //decode the attributes of the JSON into a data model
                     InstagramUser user = new InstagramUser();
-                    user.username = userJSON.getJSONObject("user").getString("username");
-                    user.full_name = userJSON.getJSONObject("full_name").getString("full_name");
-                    //-URL: { "data" => [set] => "images" => "standard_resolution" => "url" }
-                    user.profile_picture = userJSON.getJSONObject("profile").getString("profile_picture");
+                    //decode the attributes of the JSON into a data model
+                    user.username = userJSON.getString("username");
+                    TextView tvUsername = (TextView) findViewById(R.id.tvSelfUsername);
+                    tvUsername.setText("@" + user.username);
+                    user.full_name = userJSON.getString("full_name");
+                    TextView tvFullname = (TextView) findViewById(R.id.tvSelfFullName);
+                    tvFullname.setText(user.full_name);
+                    user.profile_picture = userJSON.getString("profile_picture");
+                    ImageView ivProfileImage = (ImageView) findViewById(R.id.UserImage);
+                    Picasso.with(getApplicationContext()).load(user.profile_picture).into(ivProfileImage);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                populateProfileHeader();
             }
             //onFailed (failed)
             @Override
@@ -82,15 +77,6 @@ public class TimelineActivity extends Activity {
                 //Do something
             }
         });
-    }
-
-    public void populateProfileHeader() {
-        TextView tvUsername = (TextView) findViewById(R.id.tvSelfUsername);
-        TextView tvFullname = (TextView) findViewById(R.id.tvSelfFullName);
-        ImageView ivProfileImage = (ImageView) findViewById(R.id.UserImage);
-        tvUsername.setText(user.username);
-        tvFullname.setText(user.full_name);
-        Picasso.with(this).load(user.profile_picture).into(ivProfileImage);
     }
 
     //Trigger the API requesthttps://api.instagram.com/v1/users/self/feed?access_token=ACCESS-TOKEN
@@ -114,10 +100,8 @@ public class TimelineActivity extends Activity {
                 //-Type: { "data" => [set] => "type" } ("image or video")
                 // Iterate each of the photo items and decode the item into a java object
                 JSONArray photosJSON = null;
-                JSONArray commentJSON = null;
                 try {
                     photosJSON = response.getJSONArray("data"); //array of posts
-                    commentJSON = response.getJSONObject("comments").getJSONArray("data");
                     //iterate array of posts
                     for (int i = 0; i < photosJSON.length(); i++) {
                         //get the JSON object at that positiion

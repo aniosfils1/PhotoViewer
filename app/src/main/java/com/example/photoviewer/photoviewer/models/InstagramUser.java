@@ -1,4 +1,4 @@
-package com.example.photoviewer.photoviewer;
+package com.example.photoviewer.photoviewer.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;

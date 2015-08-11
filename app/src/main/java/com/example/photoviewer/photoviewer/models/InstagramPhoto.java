@@ -1,4 +1,4 @@
-package com.example.photoviewer.photoviewer;
+package com.example.photoviewer.photoviewer.models;
 
 /**
  * Created by alexandre on 8/3/15.

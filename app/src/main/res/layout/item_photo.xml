@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#74171508">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/ivPhoto"
-        android:layout_below="@+id/ProfileImage"
+        android:layout_below="@+id/ivProfile"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -19,7 +20,6 @@
         android:textStyle="bold|italic"
         android:textIsSelectable="false"
         android:textSize="20sp"
-        android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivProfile"
         android:layout_toEndOf="@+id/ivProfile" />
@@ -76,12 +76,15 @@
         android:layout_toEndOf="@+id/textView" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:id="@+id/ivProfile"
-        android:layout_alignTop="@+id/tvUsername"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/tvUsername" />
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:background="#bea8896b"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
 
 </RelativeLayout>
